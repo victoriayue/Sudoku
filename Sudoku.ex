@@ -34,7 +34,7 @@ defmodule Sudoku do
         if v != 0 do
           {[row, col, block], {v, [v]}}
         end
-        if p!=[] && v == 0 do
+        if p != [] && v == 0 do
           intersect = get_neighbors(board, row, col, block)
           #IO.puts "At row:#{row} col:#{col} value#{v}, the intersect is "
           #IO.inspect intersect, charlists: :as_lists
@@ -144,7 +144,7 @@ defmodule Sudoku do
     board
     |> Enum.filter(fn ({[row, _col, _block], {_value, _p}}) -> row == fetch_row end)
     |> Enum.filter(fn ({[_row, col, _block], {_value, _p}}) -> col != fetch_col end)
-    |> Enum.reduce([], fn ({[_row, _col, _block], {value, p}}, acc) ->
+    |> Enum.reduce([], fn ({[_row, _col, _block], {_value, p}}, acc) ->
       acc ++ p
     end)
     |> List.flatten()
@@ -155,7 +155,7 @@ defmodule Sudoku do
     board
     |> Enum.filter(fn ({[_row, col, _block], {_value, _p}}) -> col == fetch_col end)
     |> Enum.filter(fn ({[row, _col, _block], {_value, _p}}) -> row != fetch_row end)
-    |> Enum.reduce([], fn ({[_row, _col, _block], {value, p}}, acc) ->
+    |> Enum.reduce([], fn ({[_row, _col, _block], {_value, p}}, acc) ->
       acc ++ p
     end)
     |> List.flatten()
@@ -166,7 +166,7 @@ defmodule Sudoku do
     board
     |> Enum.filter(fn ({[_row, _col, block], {_value, _p}}) -> block == fetch_block end)
     |> Enum.filter(fn ({[row, col, _block], {_value, _p}}) -> row != fetch_row && col != fetch_col end)
-    |> Enum.reduce([], fn ({[_row, _col, _block], {value, p}}, acc) ->
+    |> Enum.reduce([], fn ({[_row, _col, _block], {_value, p}}, acc) ->
       acc ++ p
     end)
     |> List.flatten()
