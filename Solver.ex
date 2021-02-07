@@ -32,7 +32,7 @@ defmodule Solver do
     unsolve = Sudoku.count_unsolve(prt)
     IO.inspect prt
     IO.puts "unsolved: #{unsolve}"
-    solve_recur(cu, unsolve, 20)
+    solve_recur(cu, unsolve, 30)
   end
 
   @doc """
@@ -48,6 +48,7 @@ defmodule Solver do
     else
       uniq = Sudoku.check_unique(board)
       uo = Sudoku.update_possible(uniq)
+
       guess = Sudoku.guess_value(uo)
       valid = Sudoku.update_valid(guess)
       up2 = Sudoku.update_possible(valid)
